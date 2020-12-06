@@ -205,7 +205,7 @@ namespace NuGet.ProjectModel.Test.ProjectLockFile
 
             // The central package version cpvm3 it was removed
             var actual = PackagesLockFileUtilities.IsLockFileStillValid(dgSpec, lockFile);
-            Assert.False(actual);
+            Assert.False(actual.Item1);
         }
 
         [Fact]
@@ -257,7 +257,7 @@ namespace NuGet.ProjectModel.Test.ProjectLockFile
 
             // The central package version cpvm2 has version changed
             var actual = PackagesLockFileUtilities.IsLockFileStillValid(dgSpec, lockFile);
-            Assert.False(actual);
+            Assert.False(actual.Item1);
         }
 
         [Fact]
@@ -309,7 +309,7 @@ namespace NuGet.ProjectModel.Test.ProjectLockFile
 
             // The central package version cpvm2 has version changed
             var actual = PackagesLockFileUtilities.IsLockFileStillValid(dgSpec, lockFile);
-            Assert.False(actual);
+            Assert.False(actual.Item1);
         }
 
         [Fact]
@@ -361,7 +361,7 @@ namespace NuGet.ProjectModel.Test.ProjectLockFile
 
             // The central package version cpvm2 has was changed from transitive to central 
             var actual = PackagesLockFileUtilities.IsLockFileStillValid(dgSpec, lockFile);
-            Assert.False(actual);
+            Assert.False(actual.Item1);
         }
 
         [Fact]
@@ -417,7 +417,7 @@ namespace NuGet.ProjectModel.Test.ProjectLockFile
 
             // Nothing changed in central package versions
             var actual = PackagesLockFileUtilities.IsLockFileStillValid(dgSpec, lockFile);
-            Assert.True(actual);
+            Assert.True(actual.Item1);
         }
 
         [Fact]
@@ -483,8 +483,8 @@ namespace NuGet.ProjectModel.Test.ProjectLockFile
 
             // Nothing changed
             // different versions of lock file versions are handled 
-            Assert.True(PackagesLockFileUtilities.IsLockFileStillValid(dgSpec, lockFile1));
-            Assert.True(PackagesLockFileUtilities.IsLockFileStillValid(dgSpec, lockFile2));
+            Assert.True(PackagesLockFileUtilities.IsLockFileStillValid(dgSpec, lockFile1).Item1);
+            Assert.True(PackagesLockFileUtilities.IsLockFileStillValid(dgSpec, lockFile2).Item1);
         }
 
         [Fact]
@@ -532,7 +532,7 @@ namespace NuGet.ProjectModel.Test.ProjectLockFile
 
             // Nothing changed in central package versions
             var actual = PackagesLockFileUtilities.IsLockFileStillValid(dgSpec, lockFile);
-            Assert.True(actual);
+            Assert.True(actual.Item1);
         }
 
         [Fact]
@@ -581,7 +581,7 @@ namespace NuGet.ProjectModel.Test.ProjectLockFile
 
             // Due to the increased version in the lock file the lock should be invalid
             var actual = PackagesLockFileUtilities.IsLockFileStillValid(dgSpec, lockFile);
-            Assert.False(actual);
+            Assert.False(actual.Item1);
         }
     }
 }
