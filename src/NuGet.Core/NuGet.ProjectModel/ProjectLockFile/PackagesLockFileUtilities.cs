@@ -163,7 +163,7 @@ namespace NuGet.ProjectModel
                 if (target == null)
                 {
                     // This should never be hit. A hit implies that project.RestoreMetadata.TargetsFrameworks and project.TargetsFrameworks are not the same.
-                    return (false, 
+                    return (false,
                             string.Format(
                                 CultureInfo.CurrentCulture,
                                 Strings.PackagesLockFile_NewTargetFramework,
@@ -372,7 +372,7 @@ namespace NuGet.ProjectModel
             // If the count is not the same, something has changed.
             // Otherwise we N^2 walk below determines whether anything has changed.
             var newPackageDependencies = newDependencies.Where(dep => dep.LibraryRange.TypeConstraint == LibraryDependencyTarget.Package).ToArray();
-            if(newPackageDependencies.Length != lockFileDependencies.Count())
+            if (newPackageDependencies.Length != lockFileDependencies.Count())
             {
                 return (true,
                            string.Format(
