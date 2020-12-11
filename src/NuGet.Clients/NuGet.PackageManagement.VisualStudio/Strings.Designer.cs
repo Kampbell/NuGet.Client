@@ -545,5 +545,14 @@ namespace NuGet.PackageManagement.VisualStudio {
                 return ResourceManager.GetString("Warning_NoExactMatchForReference", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Project dependency {0} does not contain an inclusive lower bound. Include a lower bound in the dependency version to ensure consistent restore results..
+        /// </summary>
+        public static string Warning_ProjectDependencyMissingLowerBound {
+            get {
+                return ResourceManager.GetString("Warning_ProjectDependencyMissingLowerBound", resourceCulture);
+            }
+        }
     }
 }

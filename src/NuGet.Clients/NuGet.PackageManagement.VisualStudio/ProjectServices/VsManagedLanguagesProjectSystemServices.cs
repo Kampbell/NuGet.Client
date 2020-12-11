@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -196,6 +197,16 @@ namespace NuGet.PackageManagement.VisualStudio
 
         private static LibraryDependency ToPackageLibraryDependency(PackageReference reference, bool isCpvmEnabled)
         {
+            if (string.IsNullOrWhiteSpace(reference.Version))
+            {
+                RestoreLogMessage nug1604Msg = RestoreLogMessage.CreateWarning(
+                   code: NuGetLogCode.NU1604,
+                   message: string.Format(CultureInfo.CurrentCulture, Strings.Warning_ProjectDependencyMissingLowerBound,
+                                          reference.Name));
+
+                throw new InvalidOperationException(nug1604Msg.Message);
+            }
+
             var dependency = new LibraryDependency
             {
                 AutoReferenced = MSBuildStringUtility.IsTrue(GetReferenceMetadataValue(reference, ProjectItemProperties.IsImplicitlyDefined)),
